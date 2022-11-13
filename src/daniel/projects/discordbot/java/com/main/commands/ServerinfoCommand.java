@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.awt.*;
+import java.time.format.DateTimeFormatter;
 
 public class ServerinfoCommand extends ListenerAdapter {
 
@@ -19,10 +20,11 @@ public class ServerinfoCommand extends ListenerAdapter {
             embed.setTitle("Informações do servidor: " + command.getMessage().getGuild().getName());
             embed.addField("Nome do servidor: ", command.getMessage().getGuild().getName(), false);
             embed.addField("Id do servidor: ", command.getGuild().getId(), false);
-            embed.addField("Dono:", command.getGuild().getOwner() + " id do dono: " + command.getGuild().getOwnerId(), false);
+            embed.addField("Dono:", command.getGuild().getOwner().getEffectiveName() + " id do dono: " + command.getGuild().getOwnerId(), false);
             embed.addField("Quantidade de membros:", command.getGuild().getMembers().size() + " membros", false);
             embed.addField("Numero de canais:", String.valueOf(command.getGuild().getChannels().size()), false );
-            embed.addField("Criado em: ", String.valueOf(command.getGuild().getTimeCreated()), false);
+            embed.addField("Criado em: ", String.valueOf(command.getGuild().getTimeCreated().format(DateTimeFormatter.ofPattern("DD/MM/YYYY"))), false);
+            embed.addField("Numero de cargos no servidor: ",  command.getGuild().getRoles().size() +" cargos", false);
             embed.setColor(Color.GREEN);
 
             command.getMessage().replyEmbeds(embed.build()).queue();

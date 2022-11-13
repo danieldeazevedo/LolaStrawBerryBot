@@ -15,7 +15,7 @@ public class ButtonClickEvent extends ListenerAdapter {
 
             EmbedBuilder embed = new EmbedBuilder();
             embed.setTitle("Comandos de informação: ");
-            embed.setDescription("Avatar, BotInfo, Ping, Help, Data, Userinfo, Serverinfo, ServerIcon");
+            embed.setDescription("Avatar, BotInfo, Ping, Help, Data, Userinfo, Serverinfo, ServerIcon, ");
             embed.setColor(Color.blue);
 
             event.replyEmbeds(embed.build()).queue();
@@ -25,10 +25,10 @@ public class ButtonClickEvent extends ListenerAdapter {
 
             EmbedBuilder embed = new EmbedBuilder();
             embed.setTitle("Comandos de diversão:");
-            embed.setDescription("Piada, textimage, laranjo, kiss, hug, stonks e say");
+            embed.setDescription("Piada, textimage, laranjo, kiss, hug, stonks e say, socar");
             embed.setColor(Color.green);
 
-            event.replyEmbeds(embed.build()).queue();
+            event.replyEmbeds(embed.build()).setEphemeral(true).queue();
 
         }
 
@@ -42,7 +42,7 @@ public class ButtonClickEvent extends ListenerAdapter {
 
             event.replyEmbeds(embed.build()).addActionRow(
                     net.dv8tion.jda.api.interactions.components.buttons.Button.primary("HelpInformationCmd", "Informações")
-            ).addActionRow( Button.primary("HelpFunCmd", "Diverções")).queue();
+            ).addActionRow( Button.primary("HelpFunCmd", "Diverções")).setEphemeral(true).queue();
 
 
         }

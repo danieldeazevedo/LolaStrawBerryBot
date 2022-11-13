@@ -1,9 +1,6 @@
 package daniel.projects.discordbot.java.com.main;
 
-import daniel.projects.discordbot.java.com.main.EventManager.BomDiaEvent;
-import daniel.projects.discordbot.java.com.main.EventManager.ButtonClickEvent;
-import daniel.projects.discordbot.java.com.main.EventManager.MentionEvent;
-import daniel.projects.discordbot.java.com.main.EventManager.ReadyEvent;
+import daniel.projects.discordbot.java.com.main.EventManager.*;
 import daniel.projects.discordbot.java.com.main.ImageManager.LaranjoImageBuilderEdit;
 import daniel.projects.discordbot.java.com.main.ImageManager.StonksImageBuildEdit;
 import daniel.projects.discordbot.java.com.main.ImageManager.TextImageBuilderEdit;
@@ -17,6 +14,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 
 import javax.security.auth.login.LoginException;
 import java.util.EnumSet;
@@ -27,19 +25,23 @@ public class BotLauncher extends ListenerAdapter {
 
     public static JDA jda;
 
-    public static void main(String[] args) throws LoginException{
+
+ public static void main(String[] args) throws LoginException{
 
    Informations bot = new Informations();
 
-       jda = JDABuilder.create(bot.token,
-               EnumSet.allOf(GatewayIntent.class)).build();
+
+
+  jda = JDABuilder.create(bot.token,
+          EnumSet.allOf(GatewayIntent.class)).build();
 
 
 
 
-       //status
+
+  //status
         String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : 6.0.1 alpha",
-                "Lola está mais de " + jda.getGuilds().size()+"guilds", "Meu ping é de " + jda.getGatewayPing()+"ms"};
+                 };
         final int[] currentIndex = {0};
 //Run this once
         new Timer().schedule(new TimerTask(){
@@ -58,6 +60,7 @@ public class BotLauncher extends ListenerAdapter {
         jda.addEventListener(new ButtonClickEvent());
         jda.addEventListener(new BomDiaEvent());
         jda.addEventListener(new MentionEvent());
+        jda.addEventListener(new GuildJoinEvent());
 
         //Commands
         jda.addEventListener(new PingCommand());
@@ -89,6 +92,7 @@ public class BotLauncher extends ListenerAdapter {
         jda.addEventListener(new SeverinfoSlashCommand());
         jda.addEventListener(new MemeSlashCommand());
         jda.addEventListener(new SocarSlashCommand());
+        jda.addEventListener(new BotinfoCommand());
 
 
         //SetSlashCommands
@@ -101,19 +105,20 @@ public class BotLauncher extends ListenerAdapter {
         jda.upsertCommand("laranjo", "a imagem de um laranjo")
                 .addOption(OptionType.STRING, "content", "texto do laranjo").queue();
         jda.upsertCommand("stonks", "opa stonks!")
-                .addOption(OptionType.STRING, "texto", "coloque o texto aqui").queue();
+                .addOption(OptionType.STRING, "texto", "coloque o texto aqui", true).queue();
         jda.upsertCommand("kiss", "beije algum usuário")
-                .addOption(OptionType.USER, "user", "coloque o usuário aqui").queue();
+                .addOption(OptionType.USER, "user", "coloque o usuário aqui", true).queue();
         jda.upsertCommand("hug", "abraçe alguém")
-                .addOption(OptionType.USER, "user", "coloque o usuário aqui").queue();
+                .addOption(OptionType.USER, "user", "coloque o usuário aqui", true).queue();
         jda.upsertCommand("avatar", "veja o seu avatar").queue();
         jda.upsertCommand("userinfo", "veja suas informações").queue();
         jda.upsertCommand("meme", "OwO veja memes aleátorios").queue();
         jda.upsertCommand("serverinfo", "veja a informação da sua guild").queue();
         jda.upsertCommand("socar", "brigue com alguem por algum motvo aleatorio")
-                .addOption(OptionType.USER, "user","coloque o user aqui").queue();
-
+                .addOption(OptionType.USER, "user","coloque o user aqui", true).queue();
+        jda.upsertCommand("botinfo", "veja as informações da lola");
 
 
     }
+
 }

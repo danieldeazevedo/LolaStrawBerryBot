@@ -1,7 +1,7 @@
-package daniel.projects.discordbot.java.com.main.commands;
+package daniel.projects.discordbot.java.com.main.slashcommand.commands;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
 
@@ -9,14 +9,14 @@ import java.awt.*;
 
 import static daniel.projects.discordbot.java.com.main.BotLauncher.jda;
 
-public class BotinfoCommand extends ListenerAdapter {
+public class BotInfoSlashCommand extends ListenerAdapter {
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent command) {
+    public void onSlashCommandInteraction(SlashCommandInteractionEvent command) {
 
-        String[] args = command.getMessage().getContentRaw().split(" ");
+        if(command.getName().equals("botinfo")){
 
-        if(args[0].equalsIgnoreCase("$" + "botinfo")){
+
 
             EmbedBuilder embed = new EmbedBuilder();
             embed.setTitle("Informações sobre mim :3");
@@ -27,10 +27,12 @@ public class BotinfoCommand extends ListenerAdapter {
             embed.setColor(Color.ORANGE);
 
 
-        command.getMessage().replyEmbeds(embed.build()).addActionRow(
-                Button.link("https://discord.com/oauth2/authorize?client_id=1038486811862909101&scope=bot&permissions=8", "Invite")
-        ).queue();
+            command.replyEmbeds(embed.build()).addActionRow(
+                    Button.link("https://discord.com/oauth2/authorize?client_id=1038486811862909101&scope=bot&permissions=8", "invite")
+            ).queue();
         }
 
     }
+
 }
+

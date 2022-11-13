@@ -21,7 +21,7 @@ public class StonksImageBuildEdit extends ListenerAdapter {
 
         Font font = new Font("Arial", Font.BOLD, 30);
         graphics.setFont(font);
-        graphics.setColor(Color.BLACK);
+        graphics.setColor(Color.black);
 
         graphics.drawString(command_text, 5, 30);
         graphics.dispose();

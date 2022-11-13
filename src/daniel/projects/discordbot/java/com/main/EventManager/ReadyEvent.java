@@ -9,6 +9,7 @@ public class ReadyEvent extends ListenerAdapter {
     @Override
     public void onReady(net.dv8tion.jda.api.events.session.ReadyEvent event) {
         System.out.println("Bot Logado com sucesso! Com ping de: " + BotLauncher.jda.getGatewayPing() + "ms");
+        System.out.println("Shards iniciadas");
 
 
     }
