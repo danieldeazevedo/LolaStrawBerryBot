@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LolaStrawBerry:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LolaStrawBerry_jar</output-path>
+    <root id="archive" name="LolaStrawBerry.jar">
+      <element id="module-output" name="LolaStrawBerry" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/JDA-5.0.0-alpha.21_e6bdd16-withDependencies.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
