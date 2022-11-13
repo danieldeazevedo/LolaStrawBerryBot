@@ -61,6 +61,7 @@ public class BotLauncher extends ListenerAdapter {
         jda.addEventListener(new BomDiaEvent());
         jda.addEventListener(new MentionEvent());
         jda.addEventListener(new GuildJoinEvent());
+        jda.addEventListener(new GuildLeaveEvent());
 
         //Commands
         jda.addEventListener(new PingCommand());
@@ -92,7 +93,8 @@ public class BotLauncher extends ListenerAdapter {
         jda.addEventListener(new SeverinfoSlashCommand());
         jda.addEventListener(new MemeSlashCommand());
         jda.addEventListener(new SocarSlashCommand());
-        jda.addEventListener(new BotinfoCommand());
+        jda.addEventListener(new BotInfoSlashCommand());
+        jda.addEventListener(new ChannelInfoSlashCommand());
 
 
         //SetSlashCommands
@@ -117,6 +119,8 @@ public class BotLauncher extends ListenerAdapter {
         jda.upsertCommand("socar", "brigue com alguem por algum motvo aleatorio")
                 .addOption(OptionType.USER, "user","coloque o user aqui", true).queue();
         jda.upsertCommand("botinfo", "veja as informações da lola");
+        jda.upsertCommand("channelinfo", "veja a informações desse canal")
+                .addOption(OptionType.CHANNEL, "canal", "coloque um canal aqui!", true).queue();
 
 
     }

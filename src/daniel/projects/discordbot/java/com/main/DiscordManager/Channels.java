@@ -1,4 +1,8 @@
 package daniel.projects.discordbot.java.com.main.DiscordManager;
 
-public class Channels {
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+
+public class Channels extends ListenerAdapter {
+
+
 }

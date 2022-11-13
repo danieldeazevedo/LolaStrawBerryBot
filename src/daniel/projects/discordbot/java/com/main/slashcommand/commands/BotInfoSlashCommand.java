@@ -14,9 +14,8 @@ public class BotInfoSlashCommand extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent command) {
 
-        if(command.getName().equals("botinfo")){
 
-
+        if (command.getName().equals("botinfo")) {
 
             EmbedBuilder embed = new EmbedBuilder();
             embed.setTitle("Informações sobre mim :3");
@@ -33,6 +32,7 @@ public class BotInfoSlashCommand extends ListenerAdapter {
         }
 
     }
-
 }
+
+
 
