@@ -21,7 +21,7 @@ public class ChannelInfoSlashCommand extends ListenerAdapter {
             embed.setTitle("Informações do canal: "+ command_option_channel.getName());
             embed.addField("Menção do canal: ", command_option_channel.getAsMention(), false);
             embed.addField("ID do canal: ", command_option_channel.getId(), false);
-           embed.addField("Criado em: ", command_option_channel.getTimeCreated().format(DateTimeFormatter.ofPattern("DD/MM/YYYY")), false);
+           embed.addField("Criado em: ", String.valueOf(command_option_channel.getTimeCreated().format(DateTimeFormatter.ofPattern("DD/MM/YYYY"))), false);
            embed.setColor(Color.cyan);
             command.replyEmbeds(embed.build()).queue();
 

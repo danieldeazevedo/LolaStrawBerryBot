@@ -14,7 +14,7 @@ public class PingSlashCommand extends ListenerAdapter {
 
         if(command.getName().equals("ping")){
 
-        command.reply("\uD83C\uDFD3\n Pong! Meu ping é de: " + jda.getGatewayPing() + "ms").queue();
+        command.reply("\uD83C\uDFD3 Pong! Meu ping é de: " + jda.getGatewayPing() + "ms").queue();
 
     }
 }

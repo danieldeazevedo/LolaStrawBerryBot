@@ -14,7 +14,6 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 
 import javax.security.auth.login.LoginException;
 import java.util.EnumSet;
@@ -22,25 +21,16 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class BotLauncher extends ListenerAdapter {
-
     public static JDA jda;
-
-
  public static void main(String[] args) throws LoginException{
 
    Informations bot = new Informations();
 
-
-
   jda = JDABuilder.create(bot.token,
           EnumSet.allOf(GatewayIntent.class)).build();
 
-
-
-
-
   //status
-        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : 6.0.1 alpha",
+        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : 6.9.0 alpha",
                  };
         final int[] currentIndex = {0};
 //Run this once
@@ -50,11 +40,9 @@ public class BotLauncher extends ListenerAdapter {
                 currentIndex[0] =(currentIndex[0] +1)%messages.length;
             }},0,30_000);
 
-
         //listeners
         //main
         jda.addEventListener(new BotLauncher());
-
         //events
         jda.addEventListener(new ReadyEvent());
         jda.addEventListener(new ButtonClickEvent());
@@ -74,8 +62,7 @@ public class BotLauncher extends ListenerAdapter {
         jda.addEventListener(new PiadaCommand());
         jda.addEventListener(new ServericonCommand());
         jda.addEventListener(new MemeCommand());
-
-
+        jda.addEventListener(new ClearCommand());
 
         //SlashCommandsListeners
         jda.addEventListener(new PingSlashCommand());
@@ -95,7 +82,7 @@ public class BotLauncher extends ListenerAdapter {
         jda.addEventListener(new SocarSlashCommand());
         jda.addEventListener(new BotInfoSlashCommand());
         jda.addEventListener(new ChannelInfoSlashCommand());
-
+        jda.addEventListener(new BanSlashCommand());
 
         //SetSlashCommands
         jda.upsertCommand("ping", "veja o ping do bot!").queue();
@@ -105,7 +92,7 @@ public class BotLauncher extends ListenerAdapter {
         jda.upsertCommand("say", "o bot vai falar por você")
                 .addOption(OptionType.STRING, "content", "Escreva o texto aqui", true).queue();
         jda.upsertCommand("laranjo", "a imagem de um laranjo")
-                .addOption(OptionType.STRING, "content", "texto do laranjo").queue();
+                .addOption(OptionType.STRING, "content", "texto do laranjo", true).queue();
         jda.upsertCommand("stonks", "opa stonks!")
                 .addOption(OptionType.STRING, "texto", "coloque o texto aqui", true).queue();
         jda.upsertCommand("kiss", "beije algum usuário")
@@ -118,10 +105,15 @@ public class BotLauncher extends ListenerAdapter {
         jda.upsertCommand("serverinfo", "veja a informação da sua guild").queue();
         jda.upsertCommand("socar", "brigue com alguem por algum motvo aleatorio")
                 .addOption(OptionType.USER, "user","coloque o user aqui", true).queue();
-        jda.upsertCommand("botinfo", "veja as informações da lola");
+        jda.upsertCommand("botinfo", "veja as informações da lola").queue();
         jda.upsertCommand("channelinfo", "veja a informações desse canal")
                 .addOption(OptionType.CHANNEL, "canal", "coloque um canal aqui!", true).queue();
-
+        jda.upsertCommand("ban", "Bana alguem do seu servidor")
+                .addOption(OptionType.USER, "user", "coloque o user aqui", true)
+                .addOption(OptionType.STRING, "reason", "coloque o motivo do banimento aqui", true)
+                .addOption(OptionType.INTEGER, "tempo", "coloque o tempo em dias do banimento").queue();
+        jda.upsertCommand("clear", "limpe as mensagens desse canal")
+                .addOption(OptionType.INTEGER, "quantidade", "quantidade de mensagens que serão excluidas min.2 max.99").queue();
 
     }
 
