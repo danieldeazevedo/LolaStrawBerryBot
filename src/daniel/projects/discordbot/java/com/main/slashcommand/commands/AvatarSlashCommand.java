@@ -10,17 +10,31 @@ public class AvatarSlashCommand extends ListenerAdapter {
     public void onSlashCommandInteraction(SlashCommandInteractionEvent command) {
 
 
+        if (command.getName().equals("avatar")) {
 
-        if(command.getName().equals("avatar")){
 
-            var user_avatar = command.getUser().getAvatar();
 
-            EmbedBuilder embed = new EmbedBuilder();
-            embed.setTitle("Avatar de: " + command.getUser().getAsMention());
-            embed.setImage(String.valueOf(user_avatar));
+                var user_avatar = command.getUser();
+                var user_option_avatar = command.getOption("user").getAsUser();
 
-            command.replyEmbeds(embed.build()).queue();
+                if (user_option_avatar == null) {
+
+                    EmbedBuilder embed = new EmbedBuilder();
+                    embed.setTitle("Avatar de: " + user_avatar.getName());
+                    embed.setImage(String.valueOf(user_avatar.getAvatarUrl()));
+
+                    command.replyEmbeds(embed.build()).queue();
+                }
+
+
+                EmbedBuilder embed = new EmbedBuilder();
+
+                embed.setTitle("Avatar de: " + user_option_avatar.getName());
+                embed.setImage(String.valueOf(user_option_avatar.getAvatarUrl()));
+                command.replyEmbeds(embed.build()).queue();
+
         }
 
     }
 }
+

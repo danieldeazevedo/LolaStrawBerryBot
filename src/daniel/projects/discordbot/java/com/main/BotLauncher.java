@@ -30,7 +30,7 @@ public class BotLauncher extends ListenerAdapter {
           EnumSet.allOf(GatewayIntent.class)).build();
 
   //status
-        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : 6.9.0 alpha",
+        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : 6.9.5 alpha",
                  };
         final int[] currentIndex = {0};
 //Run this once
@@ -83,6 +83,8 @@ public class BotLauncher extends ListenerAdapter {
         jda.addEventListener(new BotInfoSlashCommand());
         jda.addEventListener(new ChannelInfoSlashCommand());
         jda.addEventListener(new BanSlashCommand());
+        jda.addEventListener(new ClearSlashCommand());
+        jda.addEventListener(new AvatarSlashCommand());
 
         //SetSlashCommands
         jda.upsertCommand("ping", "veja o ping do bot!").queue();
@@ -99,7 +101,8 @@ public class BotLauncher extends ListenerAdapter {
                 .addOption(OptionType.USER, "user", "coloque o usuário aqui", true).queue();
         jda.upsertCommand("hug", "abraçe alguém")
                 .addOption(OptionType.USER, "user", "coloque o usuário aqui", true).queue();
-        jda.upsertCommand("avatar", "veja o seu avatar").queue();
+        jda.upsertCommand("avatar", "veja o seu avatar")
+                .addOption(OptionType.USER, "user", "coloca o user aqui", true).queue();
         jda.upsertCommand("userinfo", "veja suas informações").queue();
         jda.upsertCommand("meme", "OwO veja memes aleátorios").queue();
         jda.upsertCommand("serverinfo", "veja a informação da sua guild").queue();
@@ -114,6 +117,9 @@ public class BotLauncher extends ListenerAdapter {
                 .addOption(OptionType.INTEGER, "tempo", "coloque o tempo em dias do banimento").queue();
         jda.upsertCommand("clear", "limpe as mensagens desse canal")
                 .addOption(OptionType.INTEGER, "quantidade", "quantidade de mensagens que serão excluidas min.2 max.99").queue();
+        jda.upsertCommand("kick", "expulse alguem do seu servidor")
+                .addOption(OptionType.USER, "user", "coloque o user aqui", true)
+                .addOption(OptionType.STRING, "reason", "coloque o motivo", true).queue();
 
     }
 

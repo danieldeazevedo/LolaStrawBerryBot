@@ -32,6 +32,13 @@ public class ButtonClickEvent extends ListenerAdapter {
 
         }
 
+        if(event.getComponentId().equals("HelpAdmCmd")){
+            EmbedBuilder embed = new EmbedBuilder();
+            embed.setTitle("Comandos de moderação:");
+            embed.setDescription("Ban, kick, clear");
+            embed.setColor(Color.CYAN);
+        }
+
         if(event.getComponentId().equals("HelpCommand")){
 
 

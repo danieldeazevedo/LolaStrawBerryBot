@@ -12,7 +12,6 @@ public class AvatarCommand extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent command) {
 
 
-
         String[] args = command.getMessage().getContentRaw().split(" ");
 
         if(args[0].equalsIgnoreCase("$" + "avatar")){
