@@ -37,6 +37,8 @@ public class ButtonClickEvent extends ListenerAdapter {
             embed.setTitle("Comandos de moderação:");
             embed.setDescription("Ban, kick, clear");
             embed.setColor(Color.CYAN);
+
+            event.replyEmbeds(embed.build()).queue();
         }
 
         if(event.getComponentId().equals("HelpCommand")){

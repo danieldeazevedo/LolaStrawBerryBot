@@ -12,29 +12,30 @@ public class AvatarSlashCommand extends ListenerAdapter {
 
         if (command.getName().equals("avatar")) {
 
+            try {
 
 
-                var user_avatar = command.getUser();
-                var user_option_avatar = command.getOption("user").getAsUser();
-
-                if (user_option_avatar == null) {
-
-                    EmbedBuilder embed = new EmbedBuilder();
-                    embed.setTitle("Avatar de: " + user_avatar.getName());
-                    embed.setImage(String.valueOf(user_avatar.getAvatarUrl()));
-
-                    command.replyEmbeds(embed.build()).queue();
-                }
 
 
                 EmbedBuilder embed = new EmbedBuilder();
 
-                embed.setTitle("Avatar de: " + user_option_avatar.getName());
-                embed.setImage(String.valueOf(user_option_avatar.getAvatarUrl()));
+                embed.setTitle("Avatar de: " + command.getOption("user").getAsUser().getName());
+                embed.setImage(String.valueOf(command.getOption("user").getAsUser().getAvatarUrl()));
                 command.replyEmbeds(embed.build()).queue();
 
+            }catch (NullPointerException error){
+                var user_avatar = command.getUser();
+
+                EmbedBuilder embed = new EmbedBuilder();
+                embed.setTitle("Avatar de: " + user_avatar.getName());
+                embed.setImage(String.valueOf(user_avatar.getAvatarUrl()));
+
+                command.replyEmbeds(embed.build()).queue();
+            }
+
+        }
+    }
         }
 
-    }
-}
+
 

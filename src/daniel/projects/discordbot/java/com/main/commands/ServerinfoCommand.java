@@ -23,11 +23,12 @@ public class ServerinfoCommand extends ListenerAdapter {
             embed.addField("Dono:", command.getGuild().getOwner().getEffectiveName() + " id do dono: " + command.getGuild().getOwnerId(), false);
             embed.addField("Quantidade de membros:", command.getGuild().getMembers().size() + " membros", false);
             embed.addField("Numero de canais:", String.valueOf(command.getGuild().getChannels().size()), false );
-            embed.addField("Criado em: ", String.valueOf(command.getGuild().getTimeCreated().format(DateTimeFormatter.ofPattern("DD/MM/YYYY"))), false);
+            embed.addField("Criado em: ", String.valueOf(command.getGuild().getTimeCreated().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))), false);
             embed.addField("Numero de cargos no servidor: ",  command.getGuild().getRoles().size() +" cargos", false);
             embed.setColor(Color.GREEN);
 
             command.getMessage().replyEmbeds(embed.build()).queue();
+
 
 
         }

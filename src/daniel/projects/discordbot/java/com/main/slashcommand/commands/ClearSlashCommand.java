@@ -12,7 +12,7 @@ public class ClearSlashCommand extends ListenerAdapter {
         if(command.getName().equals("clear")){
             if(!command.getMember().hasPermission(Permission.MANAGE_CHANNEL)){
 
-                command.reply("<:sad_cat5:1038811211191554068>|Você não tem permisão `MANAGE_CHANNEL` para exexutar esse comando").queue();
+                command.reply("<:sad_cat5:1038811211191554068>|Você não tem permisão `MANAGE_CHANNEL` para executar esse comando").queue();
             }
 
             int num = command.getOption("quantidade").getAsInt();

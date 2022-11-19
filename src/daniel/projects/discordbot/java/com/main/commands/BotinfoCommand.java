@@ -28,7 +28,7 @@ public class BotinfoCommand extends ListenerAdapter {
 
 
         command.getMessage().replyEmbeds(embed.build()).addActionRow(
-                Button.link("https://discord.com/oauth2/authorize?client_id=1038486811862909101&scope=bot&permissions=8", "Invite")
+                Button.link("https://fir3.net/7bdEj", "Invite")
         ).queue();
         }
 

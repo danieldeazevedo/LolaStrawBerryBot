@@ -2,6 +2,7 @@ package daniel.projects.discordbot.java.com.main.EventManager;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class GuildJoinEvent extends ListenerAdapter {

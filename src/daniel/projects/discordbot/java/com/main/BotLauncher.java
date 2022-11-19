@@ -30,7 +30,7 @@ public class BotLauncher extends ListenerAdapter {
           EnumSet.allOf(GatewayIntent.class)).build();
 
   //status
-        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : 6.9.5 alpha",
+        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : 7.0.0 alpha",
                  };
         final int[] currentIndex = {0};
 //Run this once
@@ -63,6 +63,7 @@ public class BotLauncher extends ListenerAdapter {
         jda.addEventListener(new ServericonCommand());
         jda.addEventListener(new MemeCommand());
         jda.addEventListener(new ClearCommand());
+        jda.addEventListener(new DevInfoCommand());
 
         //SlashCommandsListeners
         jda.addEventListener(new PingSlashCommand());
@@ -85,6 +86,9 @@ public class BotLauncher extends ListenerAdapter {
         jda.addEventListener(new BanSlashCommand());
         jda.addEventListener(new ClearSlashCommand());
         jda.addEventListener(new AvatarSlashCommand());
+        jda.addEventListener(new WarnSlashCommand());
+        jda.addEventListener(new HelpSlashCommand());
+        jda.addEventListener(new KickSlashCommand());
 
         //SetSlashCommands
         jda.upsertCommand("ping", "veja o ping do bot!").queue();
@@ -102,8 +106,9 @@ public class BotLauncher extends ListenerAdapter {
         jda.upsertCommand("hug", "abraçe alguém")
                 .addOption(OptionType.USER, "user", "coloque o usuário aqui", true).queue();
         jda.upsertCommand("avatar", "veja o seu avatar")
-                .addOption(OptionType.USER, "user", "coloca o user aqui", true).queue();
-        jda.upsertCommand("userinfo", "veja suas informações").queue();
+                .addOption(OptionType.USER, "user", "coloca o user aqui").queue();
+        jda.upsertCommand("userinfo", "veja suas informações")
+                .addOption(OptionType.USER, "user", "coloca o user" ).queue();
         jda.upsertCommand("meme", "OwO veja memes aleátorios").queue();
         jda.upsertCommand("serverinfo", "veja a informação da sua guild").queue();
         jda.upsertCommand("socar", "brigue com alguem por algum motvo aleatorio")
@@ -114,12 +119,16 @@ public class BotLauncher extends ListenerAdapter {
         jda.upsertCommand("ban", "Bana alguem do seu servidor")
                 .addOption(OptionType.USER, "user", "coloque o user aqui", true)
                 .addOption(OptionType.STRING, "reason", "coloque o motivo do banimento aqui", true)
-                .addOption(OptionType.INTEGER, "tempo", "coloque o tempo em dias do banimento").queue();
+                .addOption(OptionType.INTEGER, "tempo", "coloque o tempo em dias do banimento", true).queue();
         jda.upsertCommand("clear", "limpe as mensagens desse canal")
                 .addOption(OptionType.INTEGER, "quantidade", "quantidade de mensagens que serão excluidas min.2 max.99").queue();
         jda.upsertCommand("kick", "expulse alguem do seu servidor")
                 .addOption(OptionType.USER, "user", "coloque o user aqui", true)
                 .addOption(OptionType.STRING, "reason", "coloque o motivo", true).queue();
+        jda.upsertCommand("warn", "chame a ateção de alguem")
+                .addOption(OptionType.USER, "user", "coloque o usuário", true)
+                .addOption(OptionType.STRING, "reason", "coloque a razão do warn aqui", true).queue();
+        jda.upsertCommand("help", "comando de ajuda").queue();
 
     }
 

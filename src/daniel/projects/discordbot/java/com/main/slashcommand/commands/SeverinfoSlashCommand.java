@@ -20,10 +20,11 @@ public class SeverinfoSlashCommand extends ListenerAdapter {
             embed.setTitle("Informações do servidor: " + command.getGuild().getName());
             embed.addField("Nome do servidor: ", command.getGuild().getName(), false);
             embed.addField("Id do servidor: ", command.getGuild().getId(), false);
-            embed.addField("Dono:", command.getGuild().getOwner().getNickname() + " id do dono: " + command.getGuild().getOwnerId(), false);
+            embed.addField("Dono:", command.getGuild().getOwner().getUser().getAsTag() + " id do dono: " + command.getGuild().getOwnerId(), false);
             embed.addField("Quantidade de membros:", command.getGuild().getMembers().size() + " membros", false);
             embed.addField("Numero de canais:", String.valueOf(command.getGuild().getChannels().size()), false);
-            embed.addField("Criado em: ", String.valueOf(command.getGuild().getTimeCreated().format(DateTimeFormatter.ofPattern("DD/MM/YYYY"))), false);
+            embed.addField("Criado em: ", String.valueOf(command.getGuild().getTimeCreated().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))), false);
+            embed.setThumbnail(command.getGuild().getIconUrl());
             embed.setColor(Color.GREEN);
 
 

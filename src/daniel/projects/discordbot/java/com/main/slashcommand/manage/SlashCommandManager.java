@@ -9,6 +9,8 @@ public class SlashCommandManager extends ListenerAdapter {
         @Override
         public void onSlashCommandInteraction(SlashCommandInteractionEvent command) {
 
+                String command_option_user = String.valueOf(command.getOption("user").getAsUser());
+
 
         }
 }
