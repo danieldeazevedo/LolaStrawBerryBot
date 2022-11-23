@@ -20,7 +20,8 @@ public class HelpSlashCommand extends ListenerAdapter {
             command.replyEmbeds(embed.build()).addActionRow(
                     Button.primary("HelpInformationCmd", "Informações"),
                     Button.primary("HelpAdmCmd", "Moderação"),
-                    Button.primary("HelpFunCmd", "Diverções")
+                    Button.primary("HelpFunCmd", "Diverções"),
+                    Button.primary("AdvcInfo", "Mais...")
             ).queue();
 
 

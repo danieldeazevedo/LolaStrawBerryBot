@@ -14,7 +14,7 @@ public class MentionEvent extends ListenerAdapter {
         if(args[0].equalsIgnoreCase("<@1038486811862909101>")){
 
 
-            event.getMessage().reply("Olá eu sou a lola, meu prifixo é $, para ver meus comandos digite $help, ou clique no botão abaixo para ver a ajuda")
+            event.getMessage().reply("Olá eu sou a lola, meu prefixo é /(slashcommands), para ver meus comandos digite /help, ou clique no botão abaixo para ver a ajuda")
                     .addActionRow(
                             Button.primary("HelpCommand", "ajuda")
                     ).queue();

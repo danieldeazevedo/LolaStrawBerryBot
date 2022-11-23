@@ -22,6 +22,7 @@ public class SeverinfoSlashCommand extends ListenerAdapter {
             embed.addField("Id do servidor: ", command.getGuild().getId(), false);
             embed.addField("Dono:", command.getGuild().getOwner().getUser().getAsTag() + " id do dono: " + command.getGuild().getOwnerId(), false);
             embed.addField("Quantidade de membros:", command.getGuild().getMembers().size() + " membros", false);
+            embed.addField("Quantidade de cargos", command.getGuild().getRoles().size()+ " cargos", false);
             embed.addField("Numero de canais:", String.valueOf(command.getGuild().getChannels().size()), false);
             embed.addField("Criado em: ", String.valueOf(command.getGuild().getTimeCreated().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))), false);
             embed.setThumbnail(command.getGuild().getIconUrl());

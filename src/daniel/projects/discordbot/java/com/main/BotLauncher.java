@@ -2,11 +2,13 @@ package daniel.projects.discordbot.java.com.main;
 
 import daniel.projects.discordbot.java.com.main.EventManager.*;
 import daniel.projects.discordbot.java.com.main.ImageManager.LaranjoImageBuilderEdit;
+import daniel.projects.discordbot.java.com.main.ImageManager.MonicaImageBuildEdit;
 import daniel.projects.discordbot.java.com.main.ImageManager.StonksImageBuildEdit;
 import daniel.projects.discordbot.java.com.main.ImageManager.TextImageBuilderEdit;
 import daniel.projects.discordbot.java.com.main.commands.*;
 import daniel.projects.discordbot.java.com.main.infobot.Informations;
 import daniel.projects.discordbot.java.com.main.slashcommand.commands.*;
+import daniel.projects.discordbot.java.com.main.slashcommand.manage.SlashCommandManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -30,7 +32,7 @@ public class BotLauncher extends ListenerAdapter {
           EnumSet.allOf(GatewayIntent.class)).build();
 
   //status
-        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : 7.0.0 alpha",
+        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : 7.4.0 alpha",
                  };
         final int[] currentIndex = {0};
 //Run this once
@@ -66,6 +68,7 @@ public class BotLauncher extends ListenerAdapter {
         jda.addEventListener(new DevInfoCommand());
 
         //SlashCommandsListeners
+       jda.addEventListener(new SlashCommandManager());
         jda.addEventListener(new PingSlashCommand());
         jda.addEventListener(new TextImageSlashCommand());
         jda.addEventListener(new TextImageBuilderEdit());
@@ -89,6 +92,9 @@ public class BotLauncher extends ListenerAdapter {
         jda.addEventListener(new WarnSlashCommand());
         jda.addEventListener(new HelpSlashCommand());
         jda.addEventListener(new KickSlashCommand());
+        jda.addEventListener(new MemeMonicaSlashCommand());
+        jda.addEventListener(new MonicaImageBuildEdit());
+        jda.addEventListener(new PiadaCommand());
 
         //SetSlashCommands
         jda.upsertCommand("ping", "veja o ping do bot!").queue();
@@ -121,7 +127,7 @@ public class BotLauncher extends ListenerAdapter {
                 .addOption(OptionType.STRING, "reason", "coloque o motivo do banimento aqui", true)
                 .addOption(OptionType.INTEGER, "tempo", "coloque o tempo em dias do banimento", true).queue();
         jda.upsertCommand("clear", "limpe as mensagens desse canal")
-                .addOption(OptionType.INTEGER, "quantidade", "quantidade de mensagens que serão excluidas min.2 max.99").queue();
+                .addOption(OptionType.INTEGER, "quantidade", "quantidade de mensagens que serão excluidas min.2 max.99", true).queue();
         jda.upsertCommand("kick", "expulse alguem do seu servidor")
                 .addOption(OptionType.USER, "user", "coloque o user aqui", true)
                 .addOption(OptionType.STRING, "reason", "coloque o motivo", true).queue();
@@ -129,6 +135,9 @@ public class BotLauncher extends ListenerAdapter {
                 .addOption(OptionType.USER, "user", "coloque o usuário", true)
                 .addOption(OptionType.STRING, "reason", "coloque a razão do warn aqui", true).queue();
         jda.upsertCommand("help", "comando de ajuda").queue();
+        jda.upsertCommand("mememonica", "coloque algo no pc da monica")
+                .addOption(OptionType.STRING, "texto", "coloque o texto aqui").queue();
+        jda.upsertCommand("piada", "deixa o bot falar piadas muito emgraçadas").queue();
 
     }
 
