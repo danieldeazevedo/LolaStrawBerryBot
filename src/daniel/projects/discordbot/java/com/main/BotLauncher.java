@@ -1,30 +1,38 @@
 package daniel.projects.discordbot.java.com.main;
 
-import daniel.projects.discordbot.java.com.main.EventManager.*;
-import daniel.projects.discordbot.java.com.main.ImageManager.LaranjoImageBuilderEdit;
-import daniel.projects.discordbot.java.com.main.ImageManager.MonicaImageBuildEdit;
-import daniel.projects.discordbot.java.com.main.ImageManager.StonksImageBuildEdit;
-import daniel.projects.discordbot.java.com.main.ImageManager.TextImageBuilderEdit;
-import daniel.projects.discordbot.java.com.main.commands.*;
+import daniel.projects.discordbot.java.com.main.utils.EventManager.*;
+import daniel.projects.discordbot.java.com.main.utils.ImageManager.LaranjoImageBuilderEdit;
+import daniel.projects.discordbot.java.com.main.utils.ImageManager.MonicaImageBuildEdit;
+import daniel.projects.discordbot.java.com.main.utils.ImageManager.StonksImageBuildEdit;
+import daniel.projects.discordbot.java.com.main.utils.ImageManager.TextImageBuilderEdit;
+import daniel.projects.discordbot.java.com.main.utils.commands.*;
+import daniel.projects.discordbot.java.com.main.utils.commands.manager.CommandManager;
 import daniel.projects.discordbot.java.com.main.infobot.Informations;
-import daniel.projects.discordbot.java.com.main.slashcommand.commands.*;
-import daniel.projects.discordbot.java.com.main.slashcommand.manage.SlashCommandManager;
+import daniel.projects.discordbot.java.com.main.utils.interactions.ModalInteraction.ModalInteractionEvent;
+import daniel.projects.discordbot.java.com.main.utils.interactions.SelectionMenuInteraction.SelectMenuInteractionEvent;
+import daniel.projects.discordbot.java.com.main.utils.interactions.slashcommand.commands.*;
+import daniel.projects.discordbot.java.com.main.utils.interactions.slashcommand.manage.SlashCommandListeners;
+import daniel.projects.discordbot.java.com.main.utils.interactions.slashcommand.manage.SlashCommandManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 import javax.security.auth.login.LoginException;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.EnumSet;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class BotLauncher extends ListenerAdapter {
     public static JDA jda;
- public static void main(String[] args) throws LoginException{
+ public static void main(String[] args) throws LoginException, SQLException, IOException {
 
    Informations bot = new Informations();
 
@@ -32,7 +40,7 @@ public class BotLauncher extends ListenerAdapter {
           EnumSet.allOf(GatewayIntent.class)).build();
 
   //status
-        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : 7.4.0 alpha",
+        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : " + bot.version,
                  };
         final int[] currentIndex = {0};
 //Run this once
@@ -43,58 +51,65 @@ public class BotLauncher extends ListenerAdapter {
             }},0,30_000);
 
         //listeners
+       jda.addEventListener(new CommandManager());
+       jda.addEventListener(new SlashCommandListeners());
+       jda.addEventListener(new EventsListeners());
+       jda.addEventListener(new SlashCommandManager());
+       jda.addEventListener();
         //main
         jda.addEventListener(new BotLauncher());
-        //events
-        jda.addEventListener(new ReadyEvent());
-        jda.addEventListener(new ButtonClickEvent());
-        jda.addEventListener(new BomDiaEvent());
-        jda.addEventListener(new MentionEvent());
-        jda.addEventListener(new GuildJoinEvent());
-        jda.addEventListener(new GuildLeaveEvent());
+//SlashCommandsListeners
+     jda.addEventListener(new PingSlashCommand());
+     jda.addEventListener(new TextImageSlashCommand());
+     jda.addEventListener(new TextImageBuilderEdit());
+     jda.addEventListener(new DataSlashCommand());
+     jda.addEventListener(new SayCommand());
+     jda.addEventListener(new LaranjoSlashCommand());
+     jda.addEventListener(new LaranjoImageBuilderEdit());
+     jda.addEventListener(new HugSlashCommand());
+     jda.addEventListener(new StonksSlashCommand());
+     jda.addEventListener(new KissSlashCommand());
+     jda.addEventListener(new StonksImageBuildEdit());
+     jda.addEventListener(new UserinfoSlashCommand());
+     jda.addEventListener(new SeverinfoSlashCommand());
+     jda.addEventListener(new MemeSlashCommand());
+     jda.addEventListener(new SocarSlashCommand());
+     jda.addEventListener(new BotInfoSlashCommand());
+     jda.addEventListener(new ChannelInfoSlashCommand());
+     jda.addEventListener(new BanSlashCommand());
+     jda.addEventListener(new ClearSlashCommand());
+     jda.addEventListener(new AvatarSlashCommand());
+     jda.addEventListener(new WarnSlashCommand());
+     jda.addEventListener(new HelpSlashCommand());
+     jda.addEventListener(new KickSlashCommand());
+     jda.addEventListener(new MemeMonicaSlashCommand());
+     jda.addEventListener(new MonicaImageBuildEdit());
+     jda.addEventListener(new PiadaSlashCommand());
+     jda.addEventListener(new BallSlashCommand());
 
-        //Commands
-        jda.addEventListener(new PingCommand());
-        jda.addEventListener(new AvatarCommand());
-        jda.addEventListener(new DataCommand());
-        jda.addEventListener(new BotinfoCommand());
-        jda.addEventListener(new HelpCommand());
-        jda.addEventListener(new UserinfoCommand());
-        jda.addEventListener(new ServerinfoCommand());
-        jda.addEventListener(new PiadaCommand());
-        jda.addEventListener(new ServericonCommand());
-        jda.addEventListener(new MemeCommand());
-        jda.addEventListener(new ClearCommand());
-        jda.addEventListener(new DevInfoCommand());
-
-        //SlashCommandsListeners
-       jda.addEventListener(new SlashCommandManager());
-        jda.addEventListener(new PingSlashCommand());
-        jda.addEventListener(new TextImageSlashCommand());
-        jda.addEventListener(new TextImageBuilderEdit());
-        jda.addEventListener(new DataSlashCommand());
-        jda.addEventListener(new SayCommand());
-        jda.addEventListener(new LaranjoSlashCommand());
-        jda.addEventListener(new LaranjoImageBuilderEdit());
-        jda.addEventListener(new HugSlashCommand());
-        jda.addEventListener(new StonksSlashCommand());
-        jda.addEventListener(new KissSlashCommand());
-        jda.addEventListener(new StonksImageBuildEdit());
-        jda.addEventListener(new UserinfoSlashCommand());
-        jda.addEventListener(new SeverinfoSlashCommand());
-        jda.addEventListener(new MemeSlashCommand());
-        jda.addEventListener(new SocarSlashCommand());
-        jda.addEventListener(new BotInfoSlashCommand());
-        jda.addEventListener(new ChannelInfoSlashCommand());
-        jda.addEventListener(new BanSlashCommand());
-        jda.addEventListener(new ClearSlashCommand());
-        jda.addEventListener(new AvatarSlashCommand());
-        jda.addEventListener(new WarnSlashCommand());
-        jda.addEventListener(new HelpSlashCommand());
-        jda.addEventListener(new KickSlashCommand());
-        jda.addEventListener(new MemeMonicaSlashCommand());
-        jda.addEventListener(new MonicaImageBuildEdit());
-        jda.addEventListener(new PiadaCommand());
+     jda.addEventListener(new PingCommand());
+     jda.addEventListener(new AvatarCommand());
+     jda.addEventListener(new DataCommand());
+     jda.addEventListener(new BotinfoCommand());
+     jda.addEventListener(new HelpCommand());
+     jda.addEventListener(new UserinfoCommand());
+     jda.addEventListener(new ServerinfoCommand());
+     jda.addEventListener(new PiadaCommand());
+     jda.addEventListener(new ServericonCommand());
+     jda.addEventListener(new MemeCommand());
+     jda.addEventListener(new ClearCommand());
+     jda.addEventListener(new DevInfoCommand());
+     jda.addEventListener(new DadosCommand());
+     jda.addEventListener(new ShutDownCommand());
+     //events
+     jda.addEventListener(new ReadyEvent());
+     jda.addEventListener(new ButtonClickEvent());
+     jda.addEventListener(new BomDiaEvent());
+     jda.addEventListener(new MentionEvent());
+     jda.addEventListener(new GuildJoinEvent());
+     jda.addEventListener(new GuildLeaveEvent());
+     jda.addEventListener(new ModalInteractionEvent());
+     jda.addEventListener(new SelectMenuInteractionEvent());
 
         //SetSlashCommands
         jda.upsertCommand("ping", "veja o ping do bot!").queue();
@@ -136,9 +151,21 @@ public class BotLauncher extends ListenerAdapter {
                 .addOption(OptionType.STRING, "reason", "coloque a razão do warn aqui", true).queue();
         jda.upsertCommand("help", "comando de ajuda").queue();
         jda.upsertCommand("mememonica", "coloque algo no pc da monica")
-                .addOption(OptionType.STRING, "texto", "coloque o texto aqui").queue();
+                .addOption(OptionType.STRING, "texto", "coloque o texto aqui", true).queue();
         jda.upsertCommand("piada", "deixa o bot falar piadas muito emgraçadas").queue();
+        jda.upsertCommand("servericon", "veja o icone da sua guild!").queue();
+        jda.upsertCommand("8ball", "pergunte algo a lola e ela responderá")
+                .addOption(OptionType.STRING, "pergunta", " coloque a pergunta aqui").queue();
 
-    }
+ //Modal-Commands
+     jda.updateCommands().addCommands(
+             Commands.context(Command.Type.USER, "Avatar"),
+             Commands.context(Command.Type.USER, "Informações"),
+             Commands.context(Command.Type.USER, "Kiss"),
+             Commands.context(Command.Type.USER, "hug"),
+             Commands.context(Command.Type.USER, "socar")
+     ).queue();
+
+ }
 
 }
