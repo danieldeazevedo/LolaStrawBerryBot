@@ -8,10 +8,10 @@ import daniel.projects.discordbot.java.com.main.utils.ImageManager.TextImageBuil
 import daniel.projects.discordbot.java.com.main.utils.commands.*;
 import daniel.projects.discordbot.java.com.main.utils.commands.manager.CommandManager;
 import daniel.projects.discordbot.java.com.main.infobot.Informations;
+import daniel.projects.discordbot.java.com.main.utils.interactions.ContextMenu.ContextMenuInteraction;
 import daniel.projects.discordbot.java.com.main.utils.interactions.ModalInteraction.ModalInteractionEvent;
 import daniel.projects.discordbot.java.com.main.utils.interactions.SelectionMenuInteraction.SelectMenuInteractionEvent;
 import daniel.projects.discordbot.java.com.main.utils.interactions.slashcommand.commands.*;
-import daniel.projects.discordbot.java.com.main.utils.interactions.slashcommand.manage.SlashCommandListeners;
 import daniel.projects.discordbot.java.com.main.utils.interactions.slashcommand.manage.SlashCommandManager;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -52,8 +52,6 @@ public class BotLauncher extends ListenerAdapter {
 
         //listeners
        jda.addEventListener(new CommandManager());
-       jda.addEventListener(new SlashCommandListeners());
-       jda.addEventListener(new EventsListeners());
        jda.addEventListener(new SlashCommandManager());
        jda.addEventListener();
         //main
@@ -86,6 +84,9 @@ public class BotLauncher extends ListenerAdapter {
      jda.addEventListener(new MonicaImageBuildEdit());
      jda.addEventListener(new PiadaSlashCommand());
      jda.addEventListener(new BallSlashCommand());
+     jda.addEventListener(new PesquisarSlashCommand());
+     jda.addEventListener(new QrCodeSlashCommand());
+     jda.addEventListener(new CoinflipSlashCommand());
 
      jda.addEventListener(new PingCommand());
      jda.addEventListener(new AvatarCommand());
@@ -101,6 +102,7 @@ public class BotLauncher extends ListenerAdapter {
      jda.addEventListener(new DevInfoCommand());
      jda.addEventListener(new DadosCommand());
      jda.addEventListener(new ShutDownCommand());
+     jda.addEventListener(new ReportBugCommand());
      //events
      jda.addEventListener(new ReadyEvent());
      jda.addEventListener(new ButtonClickEvent());
@@ -110,9 +112,10 @@ public class BotLauncher extends ListenerAdapter {
      jda.addEventListener(new GuildLeaveEvent());
      jda.addEventListener(new ModalInteractionEvent());
      jda.addEventListener(new SelectMenuInteractionEvent());
+     jda.addEventListener(new ContextMenuInteraction());
 
         //SetSlashCommands
-        jda.upsertCommand("ping", "veja o ping do bot!").queue();
+        jda.upsertCommand("ping", "veja o ping da lola").queue();
         jda.upsertCommand("textimage", "Escreva algo sobre uma imagem")
                 .addOption(OptionType.STRING, "texto", "Escreva o texto aqui", true).queue();
         jda.upsertCommand("data", "Veja a hora exata").queue();
@@ -155,9 +158,13 @@ public class BotLauncher extends ListenerAdapter {
         jda.upsertCommand("piada", "deixa o bot falar piadas muito emgraçadas").queue();
         jda.upsertCommand("servericon", "veja o icone da sua guild!").queue();
         jda.upsertCommand("8ball", "pergunte algo a lola e ela responderá")
-                .addOption(OptionType.STRING, "pergunta", " coloque a pergunta aqui").queue();
-
- //Modal-Commands
+                .addOption(OptionType.STRING, "pergunta", " coloque a pergunta aqui", true).queue();
+        jda.upsertCommand("pesquisar", "Pesquise algo na internet!")
+                .addOption(OptionType.STRING, "pesquisa", "coloque o que você quer pesquisar aqui!", true).queue();
+        jda.upsertCommand("qrcode", "transforme sua pesquisa em um qrcode")
+                .addOption(OptionType.STRING, "pesquisa", "coloque o que voce quer pesquisar aqui!").queue();
+        jda.upsertCommand("coinflip", "Veja se vai cair cara ou cora").queue();
+        //Modal-Commands
      jda.updateCommands().addCommands(
              Commands.context(Command.Type.USER, "Avatar"),
              Commands.context(Command.Type.USER, "Informações"),

@@ -43,5 +43,7 @@ public class TextImageSlashCommand extends ListenerAdapter {
         }
 
     }
+
+
 }
 

@@ -18,7 +18,7 @@ public class PiadaCommand extends ListenerAdapter {
                     "R.: Vem Quá!", "Porque o menino estava falando ao telefone deitado?\n" +
                     "R.: Para não cair a ligação.", "A enfermeira diz ao médico:\n" +
                     "- Tem um homem invisível na sala de espera.\n" +
-                    "O médico responde:\n" +
+                    "O médico responde:\n"+
                     "- Diga a ele que não posso vê-lo agora."
             + "– Chefe, quero um aumento. Saiba o senhor que tem três empresas atrás de mim.\n" +
                     "– Quais?\n" +

@@ -17,7 +17,7 @@ public class MemeMonicaSlashCommand extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent command) {
 
-        if (command.equals("mememonica")) {
+        if (command.getName().equals("mememonica")) {
             File outputfile = new File("monica.png");
 
 

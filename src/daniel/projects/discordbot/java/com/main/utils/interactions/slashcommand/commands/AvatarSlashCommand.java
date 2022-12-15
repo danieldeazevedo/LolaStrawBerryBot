@@ -5,6 +5,8 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import java.awt.*;
+
 public class AvatarSlashCommand extends ListenerAdapter {
 
     @Override
@@ -15,21 +17,25 @@ public class AvatarSlashCommand extends ListenerAdapter {
 
             try {
 
-           var useravatar = Member.AVATAR_URL;
+
+           var userOptionAvatar = command.getOption("user").getAsUser();
 //command.getOption("user").getAsUser().getAvatarUrl()
 
                 EmbedBuilder embed = new EmbedBuilder();
 
                 embed.setTitle("Avatar de: " + command.getOption("user").getAsUser().getName());
-                embed.setImage(useravatar);
+                embed.setImage(userOptionAvatar.getAvatarUrl());
+                embed.setColor(Color.CYAN);
                 command.replyEmbeds(embed.build()).queue();
 
             }catch (NullPointerException error){
-                var user_avatar = command.getUser();
 
+                var user_avatar = Member.AVATAR_URL;
+                var user = command.getUser().getName();
                 EmbedBuilder embed = new EmbedBuilder();
-                embed.setTitle("Avatar de: " + user_avatar.getName());
-                embed.setImage(String.valueOf(user_avatar.getAvatarUrl()));
+                embed.setTitle("Avatar de: " + user);
+                embed.setImage(user_avatar);
+                embed.setColor(Color.CYAN);
 
                 command.replyEmbeds(embed.build()).queue();
             }

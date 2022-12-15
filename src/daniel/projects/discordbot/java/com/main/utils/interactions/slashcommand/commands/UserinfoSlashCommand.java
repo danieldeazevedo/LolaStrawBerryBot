@@ -18,8 +18,6 @@ public class UserinfoSlashCommand extends ListenerAdapter {
 
             try {
 
-
-
                 EmbedBuilder embed = new EmbedBuilder();
                 embed.setTitle("<:cofee:1041332164194730044> Informações do usuário " + command.getOption("user").getAsUser().getName());
                 embed.addField("<a:aBlobTreta:1038811777208688750> Nome do usuário:", command.getOption("user").getAsUser().getName(), false);

@@ -1,9 +1,14 @@
 package daniel.projects.discordbot.java.com.main.utils.EventManager;
 
+import daniel.projects.discordbot.java.com.main.infobot.Informations;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.components.ActionRow;
+import net.dv8tion.jda.api.interactions.components.Modal;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
+import net.dv8tion.jda.api.interactions.components.text.TextInput;
+import net.dv8tion.jda.api.interactions.components.text.TextInputStyle;
 
 import java.awt.*;
 import java.util.Random;
@@ -61,11 +66,12 @@ public class ButtonClickEvent extends ListenerAdapter {
 
             if (event.getComponentId().equals("AdvcInfo")) {
 
+                Informations bot = new Informations();
 
                 EmbedBuilder embed = new EmbedBuilder();
                 embed.setTitle("Informações avançadas");
-                embed.addField("Versão da lola:", "7.4.0-alpha", true);
-                embed.addField("Versão do JDA: ", "5.0.0.alpha21", true);
+                embed.addField("Versão da lola:", bot.version, true);
+                embed.addField("Versão do JDA: ", bot.JDAversion, true);
                 embed.addField("Versão do java: ", "8", true);
                 embed.addField("Versão do JDK", "17", true);
 
@@ -131,6 +137,28 @@ public class ButtonClickEvent extends ListenerAdapter {
                 event.replyEmbeds(embed.build()).addActionRow(
                         Button.primary("hugbutton", "retribuir")
                 ).queue();
+
+            }
+
+            if(event.getComponentId().equals("bugButton")){
+                TextInput subject = TextInput.create("BugTheme", "Tema do bug", TextInputStyle.SHORT)
+                        .setPlaceholder("Tema do bug")
+                        .setMinLength(10)
+                        .setMaxLength(100) // or setRequiredRange(10, 100)
+                        .build();
+
+                TextInput body = TextInput.create("BugDesc", "Descrição do bug", TextInputStyle.PARAGRAPH)
+                        .setPlaceholder("Descreva o bug aqui")
+                        .setMinLength(30)
+                        .setMaxLength(1000)
+                        .build();
+
+                Modal modal = Modal.create("BugModMail", "Reportar bug")
+                        .addActionRows(ActionRow.of(subject), ActionRow.of(body))
+                        .build();
+
+                event.replyModal(modal).queue();
+
 
             }
 

@@ -1,5 +1,6 @@
 package daniel.projects.discordbot.java.com.main.utils.DiscordManager;
 
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.channel.ChannelCreateEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -13,9 +14,11 @@ public class Channels extends ListenerAdapter {
     }
 
 
-    public static Channels channeld(String channeld) {
+    public TextChannel Channel(TextChannel channel) {
 
 
-        return null;
+
+
+        return channel;
     }
 }

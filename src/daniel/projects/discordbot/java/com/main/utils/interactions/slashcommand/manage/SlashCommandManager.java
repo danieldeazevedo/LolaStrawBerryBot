@@ -7,26 +7,20 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.time.format.DateTimeFormatter;
 
-//sendo feito
 
 public class SlashCommandManager extends ListenerAdapter {
 
-        public void SlashCommandSetUp(){
-
-
-
-        }
         @Override
         public void onSlashCommandInteraction(SlashCommandInteractionEvent command) {
 
                 JDA api = command.getJDA();
-                TextChannel channe = api.getTextChannelById("1044743212448890940");
+                TextChannel channel = api.getTextChannelById("1044743212448890940");
 
 
 
-                channe.sendMessage("o comando: " + command.getName() + " foi usado por: " + command.getUser().getAsTag() + "id do usuário: " + command.getUser().getId()+ " as " + command.getTimeCreated().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+ " na guild: "+ command.getGuild().getName()+ " guild id: "+command.getGuild().getId() + " no canal: "+ command.getChannel().getName() + " channel id: " +command.getChannel().getId()).queue();
+                channel.sendMessage("o comando: " + command.getName() + " foi usado por: " + command.getUser().getAsTag() + "id do usuário: " + command.getUser().getId()+ " as " + command.getTimeCreated().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))+ " na guild: "+ command.getGuild().getName()+ " guild id: "+command.getGuild().getId() + " no canal: "+ command.getChannel().getName() + " channel id: " +command.getChannel().getId()).queue();
 
-
+              command.reply("Aconteceu algum erro ao tentar executar esse comando").queue();
 
         }
 }

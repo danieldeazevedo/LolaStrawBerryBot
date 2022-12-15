@@ -1,5 +1,6 @@
 package daniel.projects.discordbot.java.com.main.utils.commands;
 
+
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -17,6 +18,7 @@ public class BotinfoCommand extends ListenerAdapter {
         String[] args = command.getMessage().getContentRaw().split(" ");
 
         if(args[0].equalsIgnoreCase("$" + "botinfo")){
+
 
             EmbedBuilder embed = new EmbedBuilder();
             embed.setTitle("Informações sobre mim :3");
