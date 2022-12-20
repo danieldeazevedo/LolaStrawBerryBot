@@ -30,7 +30,7 @@ public class AvatarSlashCommand extends ListenerAdapter {
 
             }catch (NullPointerException error){
 
-                var user_avatar = Member.AVATAR_URL;
+                var user_avatar = command.getUser().getAvatarUrl();
                 var user = command.getUser().getName();
                 EmbedBuilder embed = new EmbedBuilder();
                 embed.setTitle("Avatar de: " + user);

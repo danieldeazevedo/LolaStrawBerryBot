@@ -1,10 +1,8 @@
 package daniel.projects.discordbot.java.com.main;
 
+
 import daniel.projects.discordbot.java.com.main.utils.EventManager.*;
-import daniel.projects.discordbot.java.com.main.utils.ImageManager.LaranjoImageBuilderEdit;
-import daniel.projects.discordbot.java.com.main.utils.ImageManager.MonicaImageBuildEdit;
-import daniel.projects.discordbot.java.com.main.utils.ImageManager.StonksImageBuildEdit;
-import daniel.projects.discordbot.java.com.main.utils.ImageManager.TextImageBuilderEdit;
+import daniel.projects.discordbot.java.com.main.utils.ImageManager.*;
 import daniel.projects.discordbot.java.com.main.utils.commands.*;
 import daniel.projects.discordbot.java.com.main.utils.commands.manager.CommandManager;
 import daniel.projects.discordbot.java.com.main.infobot.Informations;
@@ -40,13 +38,13 @@ public class BotLauncher extends ListenerAdapter {
           EnumSet.allOf(GatewayIntent.class)).build();
 
   //status
-        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : " + bot.version,
+        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : " + bot.version, "Estou em: " + jda.getGuilds().size(),
                  };
         final int[] currentIndex = {0};
 //Run this once
         new Timer().schedule(new TimerTask(){
             public void run(){
-                jda.getPresence().setPresence(OnlineStatus.ONLINE, Activity.watching(messages[currentIndex[0]]));
+                jda.getPresence().setPresence(OnlineStatus.ONLINE, Activity.playing(messages[currentIndex[0]]));
                 currentIndex[0] =(currentIndex[0] +1)%messages.length;
             }},0,30_000);
 
@@ -87,7 +85,13 @@ public class BotLauncher extends ListenerAdapter {
      jda.addEventListener(new PesquisarSlashCommand());
      jda.addEventListener(new QrCodeSlashCommand());
      jda.addEventListener(new CoinflipSlashCommand());
-
+     jda.addEventListener(new MopazSlashCommand());
+     jda.addEventListener(new MopazImageBuildEdit());
+     jda.addEventListener(new BrainMemeSlashCommand());
+     jda.addEventListener(new FirstWordSlashCommand());
+     jda.addEventListener(new BrainImageBuildEdit());
+     jda.addEventListener(new FirstWordImageBuildEdit());
+//prefix commandsListeners
      jda.addEventListener(new PingCommand());
      jda.addEventListener(new AvatarCommand());
      jda.addEventListener(new DataCommand());
@@ -115,57 +119,82 @@ public class BotLauncher extends ListenerAdapter {
      jda.addEventListener(new ContextMenuInteraction());
 
         //SetSlashCommands
-        jda.upsertCommand("ping", "veja o ping da lola").queue();
-        jda.upsertCommand("textimage", "Escreva algo sobre uma imagem")
-                .addOption(OptionType.STRING, "texto", "Escreva o texto aqui", true).queue();
-        jda.upsertCommand("data", "Veja a hora exata").queue();
-        jda.upsertCommand("say", "o bot vai falar por você")
-                .addOption(OptionType.STRING, "content", "Escreva o texto aqui", true).queue();
-        jda.upsertCommand("laranjo", "a imagem de um laranjo")
-                .addOption(OptionType.STRING, "content", "texto do laranjo", true).queue();
-        jda.upsertCommand("stonks", "opa stonks!")
-                .addOption(OptionType.STRING, "texto", "coloque o texto aqui", true).queue();
-        jda.upsertCommand("kiss", "beije algum usuário")
-                .addOption(OptionType.USER, "user", "coloque o usuário aqui", true).queue();
-        jda.upsertCommand("hug", "abraçe alguém")
-                .addOption(OptionType.USER, "user", "coloque o usuário aqui", true).queue();
-        jda.upsertCommand("avatar", "veja o seu avatar")
-                .addOption(OptionType.USER, "user", "coloca o user aqui").queue();
-        jda.upsertCommand("userinfo", "veja suas informações")
-                .addOption(OptionType.USER, "user", "coloca o user" ).queue();
-        jda.upsertCommand("meme", "OwO veja memes aleátorios").queue();
-        jda.upsertCommand("serverinfo", "veja a informação da sua guild").queue();
-        jda.upsertCommand("socar", "brigue com alguem por algum motvo aleatorio")
-                .addOption(OptionType.USER, "user","coloque o user aqui", true).queue();
-        jda.upsertCommand("botinfo", "veja as informações da lola").queue();
-        jda.upsertCommand("channelinfo", "veja a informações desse canal")
-                .addOption(OptionType.CHANNEL, "canal", "coloque um canal aqui!", true).queue();
-        jda.upsertCommand("ban", "Bana alguem do seu servidor")
-                .addOption(OptionType.USER, "user", "coloque o user aqui", true)
-                .addOption(OptionType.STRING, "reason", "coloque o motivo do banimento aqui", true)
-                .addOption(OptionType.INTEGER, "tempo", "coloque o tempo em dias do banimento", true).queue();
-        jda.upsertCommand("clear", "limpe as mensagens desse canal")
-                .addOption(OptionType.INTEGER, "quantidade", "quantidade de mensagens que serão excluidas min.2 max.99", true).queue();
-        jda.upsertCommand("kick", "expulse alguem do seu servidor")
-                .addOption(OptionType.USER, "user", "coloque o user aqui", true)
-                .addOption(OptionType.STRING, "reason", "coloque o motivo", true).queue();
-        jda.upsertCommand("warn", "chame a ateção de alguem")
-                .addOption(OptionType.USER, "user", "coloque o usuário", true)
-                .addOption(OptionType.STRING, "reason", "coloque a razão do warn aqui", true).queue();
-        jda.upsertCommand("help", "comando de ajuda").queue();
-        jda.upsertCommand("mememonica", "coloque algo no pc da monica")
-                .addOption(OptionType.STRING, "texto", "coloque o texto aqui", true).queue();
-        jda.upsertCommand("piada", "deixa o bot falar piadas muito emgraçadas").queue();
-        jda.upsertCommand("servericon", "veja o icone da sua guild!").queue();
-        jda.upsertCommand("8ball", "pergunte algo a lola e ela responderá")
-                .addOption(OptionType.STRING, "pergunta", " coloque a pergunta aqui", true).queue();
-        jda.upsertCommand("pesquisar", "Pesquise algo na internet!")
-                .addOption(OptionType.STRING, "pesquisa", "coloque o que você quer pesquisar aqui!", true).queue();
-        jda.upsertCommand("qrcode", "transforme sua pesquisa em um qrcode")
-                .addOption(OptionType.STRING, "pesquisa", "coloque o que voce quer pesquisar aqui!").queue();
-        jda.upsertCommand("coinflip", "Veja se vai cair cara ou cora").queue();
-        //Modal-Commands
+     jda.upsertCommand("brain-meme", "Liste as coisas mais inteligentes")
+             .addOption(OptionType.STRING, "brain1", "primeiro", true)
+             .addOption(OptionType.STRING, "brain2", "segundo" , true)
+             .addOption(OptionType.STRING, "brain3","terceiro", true)
+             .addOption(OptionType.STRING, "brain4", "quarto", true)
+             .addOption(OptionType.STRING, "brain5", "quinto", true)
+             .addOption(OptionType.STRING, "brain6", "sexto", true).queue();
+
+     jda.upsertCommand("primeiras-palavras", "as primeiras palavras de um bebe")
+             .addOption(OptionType.STRING , "palavras", "coloque as palavras aqui", true).queue();
+
+
+        //commands
      jda.updateCommands().addCommands(
+             Commands.slash("ping", "veja o ping da lola"),
+             Commands.slash("textimage", "Escreva algo sobre uma imagem")
+                     .addOption(OptionType.STRING, "texto", "coloque o texto aqui!")
+             .addOption(OptionType.STRING, "content", "Escreva o texto aqui"),
+    Commands.slash("laranjo", "a imagem de um laranjo")
+            .addOption(OptionType.STRING, "content", "texto do laranjo", true),
+    Commands.slash("stonks", "opa stonks!")
+            .addOption(OptionType.STRING, "texto", "coloque o texto aqui", true) ,
+    Commands.slash("kiss", "beije algum usuário")
+            .addOption(OptionType.USER, "user", "coloque o usuário aqui", true),
+    Commands.slash("hug", "abraçe alguém")
+            .addOption(OptionType.USER, "user", "coloque o usuário aqui", true),
+    Commands.slash("avatar", "veja o seu avatar")
+            .addOption(OptionType.USER, "user", "coloca o user aqui"),
+    Commands.slash("userinfo", "veja suas informações")
+            .addOption(OptionType.USER, "user", "coloca o user" ),
+    Commands.slash("meme", "OwO veja memes aleátorios"),
+    Commands.slash("serverinfo", "veja a informação da sua guild"),
+    Commands.slash("socar", "brigue com alguem por algum motvo aleatorio")
+            .addOption(OptionType.USER, "user","coloque o user aqui", true),
+    Commands.slash("botinfo", "veja as informações da lola"),
+    Commands.slash("channelinfo", "veja a informações desse canal")
+            .addOption(OptionType.CHANNEL, "canal", "coloque um canal aqui!", true),
+    Commands.slash("ban", "Bana alguem do seu servidor")
+            .addOption(OptionType.USER, "user", "coloque o user aqui", true)
+            .addOption(OptionType.STRING, "reason", "coloque o motivo do banimento aqui", true)
+            .addOption(OptionType.INTEGER, "tempo", "coloque o tempo em dias do banimento", true),
+    Commands.slash("clear", "limpe as mensagens desse canal")
+            .addOption(OptionType.INTEGER, "quantidade", "quantidade de mensagens que serão excluidas min.2 max.99", true),
+    Commands.slash("kick", "expulse alguem do seu servidor")
+            .addOption(OptionType.USER, "user", "coloque o user aqui", true)
+            .addOption(OptionType.STRING, "reason", "coloque o motivo", true),
+    Commands.slash("warn", "chame a ateção de alguem")
+            .addOption(OptionType.USER, "user", "coloque o usuário", true)
+            .addOption(OptionType.STRING, "reason", "coloque a razão do warn aqui", true),
+    Commands.slash("help", "comando de ajuda"),
+    Commands.slash("mememonica", "coloque algo no pc da monica")
+            .addOption(OptionType.STRING, "texto", "coloque o texto aqui", true),
+    Commands.slash("piada", "deixa o bot falar piadas muito emgraçadas"),
+    Commands.slash("servericon", "veja o icone da sua guild!"),
+    Commands.slash("8ball", "pergunte algo a lola e ela responderá")
+            .addOption(OptionType.STRING, "pergunta", " coloque a pergunta aqui", true),
+    Commands.slash("pesquisar", "Pesquise algo na internet!")
+            .addOption(OptionType.STRING, "pesquisa", "coloque o que você quer pesquisar aqui!", true),
+    Commands.slash("qrcode", "transforme sua pesquisa em um qrcode")
+            .addOption(OptionType.STRING, "pesquisa", "coloque o que voce quer pesquisar aqui!"),
+   Commands.slash("coinflip", "Veja se vai cair cara ou cora"),
+  Commands.slash("mopaz", "mostre que você está em paz"),
+             Commands.slash("data", "veja a data atual"),
+             Commands.slash("say", "o bot irá falar por você"),
+                   Commands.slash("brain-meme", "Liste as coisas mais inteligentes")
+             .addOption(OptionType.STRING, "brain1", "primeiro", true)
+             .addOption(OptionType.STRING, "brain2", "segundo", true)
+             .addOption(OptionType.STRING, "brain3","terceiro", true)
+             .addOption(OptionType.STRING, "brain4", "quarto", true)
+             .addOption(OptionType.STRING, "brain5", "quinto",true)
+             .addOption(OptionType.STRING, "brain6", "sexto", true),
+
+             Commands.slash("primeiras-palavras", "as primeiras palavras de um bebe")
+                     .addOption(OptionType.STRING , "palavras", "coloque as palavras aqui", true),
+
+
              Commands.context(Command.Type.USER, "Avatar"),
              Commands.context(Command.Type.USER, "Informações"),
              Commands.context(Command.Type.USER, "Kiss"),

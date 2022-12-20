@@ -23,6 +23,7 @@ public class UserinfoCommand extends ListenerAdapter {
             embed.addField("Id da conta:", command.getAuthor().getId(), false);
             embed.addField("Criou a conta em:", String.valueOf(command.getMessage().getAuthor().getTimeCreated().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))), false);
             embed.addField("É um bot: ", String.valueOf(command.getAuthor().isBot()), false);
+            embed.addField("Entrou no servidor em:", command.getMember().getTimeJoined().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), false);
             embed.setColor(Color.red);
 
             command.getMessage().replyEmbeds(embed.build()).queue();
