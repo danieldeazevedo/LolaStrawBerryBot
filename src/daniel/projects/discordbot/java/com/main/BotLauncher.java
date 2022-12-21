@@ -34,11 +34,15 @@ public class BotLauncher extends ListenerAdapter {
 
    Informations bot = new Informations();
 
+
+
   jda = JDABuilder.create(bot.token,
           EnumSet.allOf(GatewayIntent.class)).build();
 
+     var guilds = String.valueOf(jda.getGuilds().size());
+
   //status
-        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : " + bot.version, "Estou em: " + jda.getGuilds().size(),
+        String[] messages={"Olá eu sou a Lola a bot mais fofa do discord :3","Estou disponível para uso já versão : " + bot.version, "Estou em: " + guilds,
                  };
         final int[] currentIndex = {0};
 //Run this once
@@ -93,6 +97,8 @@ public class BotLauncher extends ListenerAdapter {
      jda.addEventListener(new FirstWordImageBuildEdit());
      jda.addEventListener(new PerguntamemeSlashCommand());
      jda.addEventListener(new BobCancelSlashCommand());
+     jda.addEventListener(new CryMemeSlashCommand());
+     jda.addEventListener(new WandinhaSlashCommand());
 //prefix commandsListeners
      jda.addEventListener(new PingCommand());
      jda.addEventListener(new AvatarCommand());
@@ -197,6 +203,10 @@ public class BotLauncher extends ListenerAdapter {
 
              Commands.slash("bob-fogueira", "Bob esponja vai te cancelar")
                      .addOption(OptionType.USER, "user", "user", true),
+             Commands.slash("choro-meme", "choro choro choro")
+                             .addOption(OptionType.STRING, "motivo", "coloque o motivo aqui!"),
+             Commands.slash("wandinha", "deixe a wandinha falar algumas palavras")
+                             .addOption(OptionType.STRING, "texto", "coloque o que a wandinha vai falar aqui!"),
 
              Commands.context(Command.Type.USER, "Avatar"),
              Commands.context(Command.Type.USER, "Informações"),

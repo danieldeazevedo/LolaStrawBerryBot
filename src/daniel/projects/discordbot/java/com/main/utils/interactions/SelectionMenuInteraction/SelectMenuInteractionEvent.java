@@ -39,7 +39,7 @@ public class SelectMenuInteractionEvent extends ListenerAdapter {
 
                 EmbedBuilder embed = new EmbedBuilder();
                 embed.setTitle("Comandos de diversão:");
-                embed.setDescription("Piada, textimage, laranjo, kiss, hug, stonks e say, socar,mememonica");
+                embed.setDescription("Piada, textimage, laranjo, kiss, hug, stonks e say, socar,mememonica, choro-meme, brain,pergunta-milhaomeme, bob-fogueira, primeiras-palavars ");
                 embed.setColor(Color.green);
 
                 event.replyEmbeds(embed.build()).setEphemeral(true).queue();

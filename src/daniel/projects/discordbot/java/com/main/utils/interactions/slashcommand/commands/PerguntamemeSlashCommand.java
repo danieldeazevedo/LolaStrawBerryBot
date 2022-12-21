@@ -30,10 +30,10 @@ public class PerguntamemeSlashCommand extends ListenerAdapter {
 
             String[] oppções = {
 
-                "Letra a",
-                    "Letra b",
-                    "letra c",
-                    "letra d"
+                option_a,
+                 option_b,
+                    option_c,
+                    option_d
             };
             var resposta = oppções[new Random().nextInt(oppções.length)];
 
@@ -48,7 +48,7 @@ public class PerguntamemeSlashCommand extends ListenerAdapter {
             }
 
 
-            command.reply("Minha opção foi: " + resposta + " qual foi a sua?").addFiles(FileUpload.fromData(outfile)).addActionRow(
+            command.reply("Minha opção foi " + resposta + " qual é a sua?").addFiles(FileUpload.fromData(outfile)).addActionRow(
                     Button.primary("Option_a", "Letra A"),
                     Button.primary("Option_b", "Letra B"),
                     Button.primary("Option_c", "Letra C"),

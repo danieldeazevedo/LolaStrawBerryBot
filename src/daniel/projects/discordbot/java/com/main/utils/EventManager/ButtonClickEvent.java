@@ -165,6 +165,7 @@ public class ButtonClickEvent extends ListenerAdapter {
             if(event.getComponentId().equals("Option_a")){
 
                 event.reply(event.getUser().getAsMention() + " escolheu a opção **a**").queue();
+
             }
             if(event.getComponentId().equals("Option_b")){
 
