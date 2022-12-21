@@ -91,6 +91,8 @@ public class BotLauncher extends ListenerAdapter {
      jda.addEventListener(new FirstWordSlashCommand());
      jda.addEventListener(new BrainImageBuildEdit());
      jda.addEventListener(new FirstWordImageBuildEdit());
+     jda.addEventListener(new PerguntamemeSlashCommand());
+     jda.addEventListener(new BobCancelSlashCommand());
 //prefix commandsListeners
      jda.addEventListener(new PingCommand());
      jda.addEventListener(new AvatarCommand());
@@ -118,17 +120,7 @@ public class BotLauncher extends ListenerAdapter {
      jda.addEventListener(new SelectMenuInteractionEvent());
      jda.addEventListener(new ContextMenuInteraction());
 
-        //SetSlashCommands
-     jda.upsertCommand("brain-meme", "Liste as coisas mais inteligentes")
-             .addOption(OptionType.STRING, "brain1", "primeiro", true)
-             .addOption(OptionType.STRING, "brain2", "segundo" , true)
-             .addOption(OptionType.STRING, "brain3","terceiro", true)
-             .addOption(OptionType.STRING, "brain4", "quarto", true)
-             .addOption(OptionType.STRING, "brain5", "quinto", true)
-             .addOption(OptionType.STRING, "brain6", "sexto", true).queue();
-
-     jda.upsertCommand("primeiras-palavras", "as primeiras palavras de um bebe")
-             .addOption(OptionType.STRING , "palavras", "coloque as palavras aqui", true).queue();
+    //set Slash-Commands
 
 
         //commands
@@ -182,7 +174,8 @@ public class BotLauncher extends ListenerAdapter {
    Commands.slash("coinflip", "Veja se vai cair cara ou cora"),
   Commands.slash("mopaz", "mostre que você está em paz"),
              Commands.slash("data", "veja a data atual"),
-             Commands.slash("say", "o bot irá falar por você"),
+             Commands.slash("say", "o bot irá falar por você")
+                     .addOption(OptionType.STRING, "content", "coloque o say aqui", true),
                    Commands.slash("brain-meme", "Liste as coisas mais inteligentes")
              .addOption(OptionType.STRING, "brain1", "primeiro", true)
              .addOption(OptionType.STRING, "brain2", "segundo", true)
@@ -194,6 +187,16 @@ public class BotLauncher extends ListenerAdapter {
              Commands.slash("primeiras-palavras", "as primeiras palavras de um bebe")
                      .addOption(OptionType.STRING , "palavras", "coloque as palavras aqui", true),
 
+             Commands.slash("pergunta-milhaomeme", "Faça a pergunta do milhão")
+                     .addOption(OptionType.STRING, "pergunta", "Coloque a pergunta aqui", true)
+                     .addOption(OptionType.STRING, "opção_a", "letra a", true)
+                     .addOption(OptionType.STRING, "opção_b", "letra b", true)
+                     .addOption(OptionType.STRING, "opção_c", "letra c", true)
+                     .addOption(OptionType.STRING, "opção_d", "letra d", true),
+
+
+             Commands.slash("bob-fogueira", "Bob esponja vai te cancelar")
+                     .addOption(OptionType.USER, "user", "user", true),
 
              Commands.context(Command.Type.USER, "Avatar"),
              Commands.context(Command.Type.USER, "Informações"),

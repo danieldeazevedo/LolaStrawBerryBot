@@ -16,17 +16,17 @@ public class BrainImageBuildEdit extends ListenerAdapter {
         Graphics2D graphics = img.createGraphics();
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-        Font font = new Font("Arial", Font.BOLD, 25);
+        Font font = new Font("Arial", Font.BOLD, 18);
         graphics.setFont(font);
         graphics.setColor(Color.BLACK);
 
 
-        graphics.drawString(option_1, 10, 50);
-        graphics.drawString(option_2, 10, 200);
-        graphics.drawString(option_3, 10, 350);
-        graphics.drawString(option_4, 10, 500);
-        graphics.drawString(option_5, 10, 650);
-        graphics.drawString(option_6, 10, 800);
+        graphics.drawString(option_1, 5, 50);
+        graphics.drawString(option_2, 5, 200);
+        graphics.drawString(option_3, 5, 350);
+        graphics.drawString(option_4, 5, 500);
+        graphics.drawString(option_5, 5, 650);
+        graphics.drawString(option_6, 5, 800);
         graphics.dispose();
         return img;
     }

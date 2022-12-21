@@ -162,6 +162,23 @@ public class ButtonClickEvent extends ListenerAdapter {
 
             }
 
+            if(event.getComponentId().equals("Option_a")){
+
+                event.reply(event.getUser().getAsMention() + " escolheu a opção **a**").queue();
+            }
+            if(event.getComponentId().equals("Option_b")){
+
+                event.reply(event.getUser().getAsMention() + " escolheu a opção **b**").queue();
+            }
+            if(event.getComponentId().equals("Option_c")){
+
+                event.reply(event.getUser().getAsMention() + " escolheu a opção **c**").queue();
+            }
+            if(event.getComponentId().equals("Option_d")){
+
+                event.reply(event.getUser().getAsMention() + " escolheu a opção **d**").queue();
+            }
+
         }else {
             event.reply("voce não é " + event.getUser().getAsMention() + " para poder clicar aqui").queue();
         }
